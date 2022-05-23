@@ -11,11 +11,11 @@ class Person {
 }
 
 class Employee extends Person {
-    #salary = 2300;
+    #salary;
 
-    constructor(firstName, lastName, age, birthDayDate, jobPosition) {
+    constructor(firstName, lastName, age, birthDayDate, salary, jobPosition) {
         super(firstName, lastName, age, birthDayDate)
-        // this.#salary = salary;
+        this.#salary = salary;
         this.jobPosition = jobPosition;
     }
 
@@ -27,14 +27,23 @@ class Employee extends Person {
         const yearSalary = this.salary * 12;
         return yearSalary;
     }
-    celebrate() {
-        const birthDay = new Date(this.birthDayDate)
-        const workOrWeekend = birthDay.getDay()
-        if (workOrWeekend == 6 || workOrWeekend == 0) {
-            return "Happy Birthday, let's celebrate"
+
+    isWeekend(selectedDay) {
+        selectedDay = this.birthDayDate;
+        const date = new Date(selectedDay);
+        const weekendDay = date.getDay();
+        if (weekendDay == 6 || weekendDay == 0) {
+            return super.celebrate()
         } else {
             return "Happy Birthday, but I need to work"
         }
+    }
+
+    celebrate() {
+        const birthDay = new Date()
+        const currentYear = birthDay.getFullYear()
+        const settedYear = birthDay.setFullYear(currentYear)
+        return this.isWeekend(settedYear)
     }
 }
 
@@ -45,6 +54,3 @@ console.log(person)
 console.log(employee)
 console.log(person.celebrate())
 console.log(employee.celebrate())
-
-// employee.salary = 3000;
-// console.log(employee.salary)
