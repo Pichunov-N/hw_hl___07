@@ -10,6 +10,11 @@ class Person {
     }
 }
 
+function isWeekend(selectedDay) {
+    const date = new Date(selectedDay);
+    const weekendDay = date.getDay();
+    return weekendDay == 6 || weekendDay == 0
+}
 class Employee extends Person {
     #salary;
 
@@ -28,22 +33,16 @@ class Employee extends Person {
         return yearSalary;
     }
 
-    isWeekend(selectedDay) {
-        selectedDay = this.birthDayDate;
-        const date = new Date(selectedDay);
-        const weekendDay = date.getDay();
-        if (weekendDay == 6 || weekendDay == 0) {
+    celebrate() {
+        const birthDay = new Date()
+        const currentYear = birthDay.setFullYear(birthDay.getFullYear())
+
+        isWeekend(currentYear)
+        if (isWeekend(this.birthDayDate)) {
             return super.celebrate()
         } else {
             return "Happy Birthday, but I need to work"
         }
-    }
-
-    celebrate() {
-        const birthDay = new Date()
-        const currentYear = birthDay.getFullYear()
-        const settedYear = birthDay.setFullYear(currentYear)
-        return this.isWeekend(settedYear)
     }
 }
 
