@@ -3,7 +3,7 @@
 
 //1
 const sumTwoSmallestNumbers = (...args) => {
-    if (args == 1) {
+    if (args.length == 1) {
         return console.error("...");
     } else {
         const sortedArray = args.sort((a, b) => a - b);
@@ -18,8 +18,8 @@ console.log(sumTwoSmallestNumbers(1));
 
 
 //2
-function createCalculator(firstNum) {
-    let result = firstNum;
+function createCalculator(defaultValue ) {
+    let result = defaultValue ;
     return {
         sum: (a) => {
             result += a
